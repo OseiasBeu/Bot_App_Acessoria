@@ -1,0 +1,25 @@
+2023-01-04 18:05:37,737 - root - INFO - ==========| INICIANDO BPA |==========
+2023-01-04 18:05:37,738 - root - INFO - Instanciando browser
+2023-01-04 18:05:39,014 - root - INFO - Abrindo Navegador
+2023-01-04 18:05:40,303 - root - INFO - Efetuando leitura de variáveis de login.
+2023-01-04 18:05:40,306 - root - INFO - Finalizando leitura de variáveis de login.
+2023-01-04 18:05:40,307 - root - INFO - Efetuando login
+2023-01-04 18:05:47,464 - root - INFO - Entrando no menu Lista de Entregas
+2023-01-04 18:05:48,178 - root - INFO - Página Lista de Entregas processada...
+2023-01-04 18:05:48,179 - root - INFO - Efetuando busca pelo departamento:Fiscal
+2023-01-04 18:05:52,050 - root - INFO - Busca realizada com sucesso.
+2023-01-04 18:05:52,050 - root - INFO - Capturando a quantidade de registros
+2023-01-04 18:05:55,095 - root - INFO - Captura de registros efetuada com sucesso! QTD.: [0 reg]
+2023-01-04 18:05:55,095 - root - INFO - Efetuando busca pelo departamento:Pessoal
+2023-01-04 18:05:58,480 - root - INFO - Busca realizada com sucesso.
+2023-01-04 18:05:58,481 - root - INFO - Capturando a quantidade de registros
+2023-01-04 18:06:01,518 - root - INFO - Captura de registros efetuada com sucesso! QTD.: [0 reg]
+2023-01-04 18:06:01,518 - root - INFO - Efetuando busca pelo departamento:Processos
+2023-01-04 18:06:04,919 - root - INFO - Busca realizada com sucesso.
+2023-01-04 18:06:04,920 - root - INFO - Capturando a quantidade de registros
+2023-01-04 18:06:07,953 - root - INFO - Captura de registros efetuada com sucesso! QTD.: [0 reg]
+2023-01-04 18:06:07,954 - root - INFO - Efetuando busca pelo departamento:Contábil
+2023-01-04 18:06:11,324 - root - INFO - Busca realizada com sucesso.
+2023-01-04 18:06:11,324 - root - INFO - Capturando a quantidade de registros
+2023-01-04 18:06:14,352 - root - INFO - Captura de registros efetuada com sucesso! QTD.: [0 reg]
+2023-01-04 18:06:29,368 - root - INFO - ==========| FINALIZANDO BPA |==========
