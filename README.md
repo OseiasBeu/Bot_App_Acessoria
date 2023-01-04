@@ -12,5 +12,15 @@
 [x] - Criar módulo de instalação de pacotes
 [] - Criar agendador de evento para execução no periodo solicitado (SEG-SEX [07:30 AM & 16:30 PM])
 
+---
 # BUG:
 [] - Entender como fazer o disparo de email utilizando o smtplib
+
+---
+# INSTRUÇÕES PARA USO:
+- 1º: Criar arquivo `.env` na pasta raiz do projeto;
+- 2º: Adicionar as variáveis de execução: 
+> email='EMAIL DE LOGIN NO SITE DA ACESSORIA'
+> pwd='SENHA DE ACESSO AO SITE DA ACESSORIA'
+> senderEmail='EMAIL DO REMETENTE'
+> senderPwd='SENHA DO REMETENTE' 
