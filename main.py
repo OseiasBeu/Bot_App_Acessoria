@@ -6,8 +6,6 @@ from get_env import print_env
 from mail import Email
 
 
-# secret = print_env(body)
-
 LOG_FILENAME = 'logs\log.log'
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
@@ -20,31 +18,35 @@ try:
     navegador.openBrowser()
     email = Email()
     
-    envs = print_env(['email','pwd','senderEmail','senderPwd'])
+    envs = print_env(['email','pwd','senderEmail','senderPwd','to_fiscal','to_pessoal','to_processos','to_contabil'])
     navegador.login(envs['email'],envs['pwd'])
     navegador.goToDeliveryList()
+    navegador.setDate()
     
     navegador.searchDepartment('Fiscal')
     qtdRecords = navegador.getRecords()
+    qtdRecords= qtdRecords.replace('[','').replace(']','')
     message = f'A quantidade de registros é:{qtdRecords}'
-    email.send_email(envs['senderEmail'],envs['senderPwd'],['fiscal@dominio.com'],[message,'Quantidade de Registros'])
+    email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_fiscal'],[message])
     
     navegador.searchDepartment('Pessoal')
     qtdRecords = navegador.getRecords()
+    qtdRecords= qtdRecords.replace('[','').replace(']','')
     message = f'A quantidade de registros é:{qtdRecords}'
-    email.send_email(envs['senderEmail'],envs['senderPwd'],['pessoal@dominio.com'],[message,'Quantidade de Registros'])
+    email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_pessoal'],[message])
     
     navegador.searchDepartment('Processos')
     qtdRecords = navegador.getRecords()
+    qtdRecords= qtdRecords.replace('[','').replace(']','')
     message = f'A quantidade de registros é:{qtdRecords}'
-    email.send_email(envs['senderEmail'],envs['senderPwd'],['processos@dominio.com'],[message,'Quantidade de Registros'])
+    email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_processos'],[message])
     
     navegador.searchDepartment('Contábil')
     qtdRecords = navegador.getRecords()
+    qtdRecords= qtdRecords.replace('[','').replace(']','')
     message = f'A quantidade de registros é:{qtdRecords}'
-    email.send_email(envs['senderEmail'],envs['senderPwd'],['contabil@dominio.com'],[message,'Quantidade de Registros'])
-    
-    time.sleep(5)
+    email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_contabil'],[message])
+
     
     logging.info('==========| FINALIZANDO BPA |==========')
 except Exception as e:

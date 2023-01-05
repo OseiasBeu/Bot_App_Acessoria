@@ -12,10 +12,12 @@
 - [x] - Criar módulo de instalação de pacotes
 - [ ] - Criar agendador de evento para execução no periodo solicitado (SEG-SEX [07:30 AM & 16:30 PM])
 - [ ] - Criar arquivo requirements.txt
+- [ ] - Criar instalador de pacotes necessários
+- [ ] - Finalizar instruções do readme
 
 ---
 # BUG:
-- [] - Entender como fazer o disparo de email utilizando o smtplib
+- [x] - Entender como fazer o disparo de email utilizando o smtplib
 
 ---
 # INSTRUÇÕES PARA USO:

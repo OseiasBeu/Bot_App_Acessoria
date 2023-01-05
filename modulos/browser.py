@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 
 import time
+from datetime import datetime
 import logging
 
 from get_env import print_env
@@ -20,6 +21,7 @@ class Browser:
         self.by = By
         self.keys = Keys
         self.paginaLogin = 'https://app.acessorias.com/index.php'
+        self.today = datetime.today().strftime('%d%m%Y')
     
     def openBrowser(self):
         logging.info('Abrindo Navegador')
@@ -44,9 +46,11 @@ class Browser:
         
     def goToDeliveryList(self):
         try:
-            time.sleep(7)
+            time.sleep(5)
             logging.info('Entrando no menu Lista de Entregas')
             self.driver.find_element(self.by.XPATH,'//*[@id="M3"]/a/span').click()
+            time.sleep(2)
+            
             logging.info('Página Lista de Entregas processada...')
             
         except Exception as e:
@@ -54,16 +58,46 @@ class Browser:
             logging.error(f'Um erro inesperado aconteceu: {e}')
             logging.error('==========| ERRO |==========')
             
+    def setDate(self):
+        try:
+            time.sleep(2)
+            logging.info('Configurando filtro de data')
+            inputDt_de = self.driver.find_element(self.by.XPATH,'//*[@id="EntPzDe"]')
+            inputDt_ate = self.driver.find_element(self.by.XPATH,'//*[@id="EntPzAte"]')
+            if self.today[0] == '0':
+                self.today = '0'+self.today                          
+            
+            inputDt_de.send_keys(self.today)
+            
+            time.sleep(1)
+            inputDt_ate.send_keys(self.today)
+            time.sleep(1)
+            inputDt_ate.send_keys(Keys.ENTER)
+            
+            time.sleep(2)
+                    
+            logging.info('Filtro de data configurado com sucesso')
+        except Exception as e:
+            logging.error('==========| ERRO |==========')
+            logging.error(f'Um erro inesperado aconteceu: {e}')
+            logging.error('==========| ERRO |==========')          
+        
+            
     def searchDepartment(self,departament):
         try:
             logging.info(f'Efetuando busca pelo departamento:{departament}')
+            # self.driver.find_element(self.by.XPATH,'//*[@id="btShowFilters"]').click()
             filterDepartament = self.driver.find_element(self.by.XPATH,'//*[@id="fieldFilters"]/span/span[1]/span/ul/li/input')
-            clearFilter = self.driver.find_element(self.by.XPATH,'//*[@id="fieldFilters"]/span/span[1]/span/ul/li[1]/span')            
+            # if departament != 'Fiscal':
+            clearFilter = self.driver.find_element(self.by.XPATH,'//*[@id="fieldFilters"]/span/span[1]/span/ul/li[1]/span')                        
             clearFilter.click()
+                
             filterDepartament.click()
             departament = 'Dpto: ' + departament
             filterDepartament.send_keys(departament)  
             filterDepartament.send_keys(self.keys.ENTER)  
+            self.driver.find_element(self.by.XPATH,'//*[@id="btFilter"]').click()
+            
             time.sleep(3)
             logging.info(f'Busca realizada com sucesso.')
             

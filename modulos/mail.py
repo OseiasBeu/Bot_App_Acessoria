@@ -1,36 +1,45 @@
-from smtplib import SMTP_SSL
+import smtplib
+from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import logging
 
-class Email:
-    def __init__(self):
-        pass
-    
-    def send_email(self, sender, pwd, receivers, body):
+class Email():
+    def __init__(self) -> None:
+        self.host = 'smtp.gmail.com'
+        self.port = 587
+
+    def send_email(self,senderEmail,senderPwd,to,message):
         try:
-            logging.info('Iniciando envio de email')
-            sender = sender
-            receivers = receivers
-            message = body[0]
-            subject = body[1]
+            logging.info('Criando objeto servidor...')
+            server = smtplib.SMTP(self.host, self.port)
+            logging.info('Efetuando login')
+            server.ehlo()
+            server.starttls()
+            server.login(senderEmail, senderPwd)
             
-            msg = MIMEText(message)
-            msg['Subject'] = subject
-            msg['From'] = sender
-            msg['To'] = ', '.join(receivers)
-            smtp_server = SMTP_SSL('smtp.gmail.com', 465)
-            smtp_server.login(sender, pwd)
-            smtp_server.sendmail(sender, receivers, msg.as_string())
-            smtp_server.quit()   
-            logging.info('Email enviado com sucesso!')
+            logging.info('Preparando email')
+            email_msg = MIMEMultipart()
+            email_msg['From'] = senderEmail
+            email_msg['To'] = to
+            email_msg['Subject'] = 'QUANTIDADE DE REGISTROS'
+            email_msg.attach(MIMEText(message[0], 'plain'))
+
+            logging.info('Enviando email')
+            server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
+            logging.info('Email enviado!')
+            server.quit()
         except Exception as e:
             logging.error('==========| ERRO |==========')
             logging.error(f'Um erro inesperado aconteceu: {e}')
             logging.error('==========| ERRO |==========')
 
-
+            
 if __name__ == "__main__":
     email = Email()
-    message = f'A quantidade de registros é: 123'
-    email.send_email('EMAIL_REMETENTE_AQUI','SENHA',['EMAIL_DESTINATÁRIO_AQUI'],[message,'Quantidade de Registros'])
-    
+    qtdRecords = 15
+    message = f'A quantidade de registros é:{qtdRecords}'
+    envs = {}
+    envs['senderEmail'] = 'SEU EMAIL VAI AQUI'
+    envs['senderPwd'] = 'SUA SENHA VAI AQUI'
+  
+    email.send_email(envs['senderEmail'],envs['senderPwd'],'AQUI VAI O EMAIL DO RECEBEDOR',[message,'Quantidade de Registros'])
