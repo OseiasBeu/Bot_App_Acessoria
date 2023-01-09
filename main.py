@@ -1,4 +1,4 @@
-import sys,logging, time, schedule
+import sys,logging, schedule
 
 sys.path.append('modulos')
 from browser import Browser
@@ -26,26 +26,30 @@ def job():
         navegador.searchDepartment('Fiscal')
         qtdRecords = navegador.getRecords()
         qtdRecords= qtdRecords.replace('[','').replace(']','')
-        message = f'A quantidade de registros é:{qtdRecords}'
-        email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_fiscal'],[message])
+        
+        message = email.setMensage('Fiscal', qtdRecords)
+        email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_fiscal'],message)
         
         navegador.searchDepartment('Pessoal')
         qtdRecords = navegador.getRecords()
         qtdRecords= qtdRecords.replace('[','').replace(']','')
-        message = f'A quantidade de registros é:{qtdRecords}'
-        email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_pessoal'],[message])
+        
+        message = email.setMensage('Pessoal', qtdRecords)
+        email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_pessoal'],message)
         
         navegador.searchDepartment('Processos')
         qtdRecords = navegador.getRecords()
         qtdRecords= qtdRecords.replace('[','').replace(']','')
-        message = f'A quantidade de registros é:{qtdRecords}'
-        email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_processos'],[message])
+        
+        message = email.setMensage('Processos', qtdRecords)
+        email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_processos'],message)
         
         navegador.searchDepartment('Contábil')
         qtdRecords = navegador.getRecords()
         qtdRecords= qtdRecords.replace('[','').replace(']','')
-        message = f'A quantidade de registros é:{qtdRecords}'
-        email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_contabil'],[message])
+        
+        message = email.setMensage('Contábil', qtdRecords)
+        email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_contabil'],message)
 
         
         logging.info('==========| FINALIZANDO BPA |==========')
@@ -57,8 +61,8 @@ def job():
 
 if __name__ == "__main__":
     logging.info('BPA agendado para execução')
-    schedule.every().day.at("17:27").do(job)
-    schedule.every().day.at("17:33").do(job)
+    schedule.every().day.at("10:24").do(job)
+    schedule.every().day.at("16:27").do(job)
 
     while True:
         schedule.run_pending()
