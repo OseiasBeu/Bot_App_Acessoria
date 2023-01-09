@@ -112,6 +112,9 @@ class Browser:
             qtdRecords = self.driver.find_element(By.XPATH, '//*[@id="entTotReg"]').text
             time.sleep(3)
             logging.info(f'Captura de registros efetuada com sucesso! QTD.: {qtdRecords}')
+            
+            logging.info('Efetuando tratamento da quantidade de restistros')
+            qtdRecords = qtdRecords.replace('[','').replace(']','').replace(' reg','')
             return qtdRecords 
         except Exception as e:
             logging.error('==========| ERRO |==========')

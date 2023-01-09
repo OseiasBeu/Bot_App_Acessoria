@@ -25,7 +25,8 @@ class Email():
                 '''
                 logging.info('Mensagem padrão de antes do meio dia!')
             else:
-                if qtdRecords > 0:
+                logging.info('Configuração daapós o meio dia!')
+                if int(qtdRecords) > 0:
                     subject = f'Atenção, ainda constam: {qtdRecords} obrigações vencendo hoje'
                     body_email = f'''
                     Olá amigos do departamento {departamento}, vocês possuem {qtdRecords} obrigações vencendo hoje.
@@ -34,7 +35,7 @@ class Email():
                     Este e-mail é enviado de forma automática, não responda!
                     '''
                     logging.info(f'Mensagem para depois do meio dia, com {qtdRecords} registros')
-                elif qtdRecords == 0:
+                elif int(qtdRecords) == 0:
                     subject = f'Parabéns, Todas as obrigações foram entregues!'
                     body_email = f'''Olá amigos do departamento {departamento},
                     Parabéns! Vocês já realizaram todas as entregas previstas para hoje!
