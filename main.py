@@ -25,28 +25,28 @@ def job():
         
         navegador.searchDepartment('Fiscal')
         qtdRecords = navegador.getRecords()
-        # qtdRecords= qtdRecords.replace('[','').replace(']','')
+    
         
         message = email.setMensage('Fiscal', qtdRecords)
         email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_fiscal'],message)
         
         navegador.searchDepartment('Pessoal')
         qtdRecords = navegador.getRecords()
-        # qtdRecords= qtdRecords.replace('[','').replace(']','')
+        
         
         message = email.setMensage('Pessoal', qtdRecords)
         email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_pessoal'],message)
         
         navegador.searchDepartment('Processos')
         qtdRecords = navegador.getRecords()
-        # qtdRecords= qtdRecords.replace('[','').replace(']','')
+        
         
         message = email.setMensage('Processos', qtdRecords)
         email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_processos'],message)
         
         navegador.searchDepartment('Contábil')
         qtdRecords = navegador.getRecords()
-        # qtdRecords= qtdRecords.replace('[','').replace(']','')
+        
         
         message = email.setMensage('Contábil', qtdRecords)
         email.send_email(envs['senderEmail'],envs['senderPwd'],envs['to_contabil'],message)
