@@ -61,7 +61,7 @@ def job():
 
 if __name__ == "__main__":
     logging.info('BPA agendado para execução')
-    schedule.every().day.at("10:24").do(job)
+    schedule.every().day.at("07:28").do(job)
     schedule.every().day.at("16:27").do(job)
 
     while True:
